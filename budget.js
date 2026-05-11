@@ -23,9 +23,6 @@ const addIncome = document.querySelector(".add-income");
 const incomeTitle = document.getElementById("income-title-input");
 const incomeAmount = document.getElementById("income-amount-input");
 
-// LANGUAGE SWITCH
-const langSelect = document.getElementById("lang-select");
-
 // VARIABLES
 let ENTRY_LIST;
 let balance = 0,
@@ -33,38 +30,6 @@ let balance = 0,
   outcome = 0;
 const DELETE = "delete",
   EDIT = "edit";
-
-// INTERNATIONALIZATION
-const translations = {
-  en: {
-    balance: "Balance",
-    income: "Income",
-    outcome: "Expense",
-    dashboard: "Dashboard",
-    expenses: "Expenses",
-    all: "All",
-    title: "title",
-    amount: "$0",
-    cookieMessage: "We use cookies to improve your experience.",
-    accept: "Accept",
-    privacy: "Privacy Policy"
-  },
-  zh: {
-    balance: "余额",
-    income: "收入",
-    outcome: "支出",
-    dashboard: "仪表盘",
-    expenses: "支出",
-    all: "全部",
-    title: "标题",
-    amount: "¥0",
-    cookieMessage: "我们使用Cookie来改善您的体验。",
-    accept: "同意",
-    privacy: "隐私政策"
-  }
-};
-
-let currentLang = localStorage.getItem("lang") || "zh";
 
 // ESCAPE HTML TO PREVENT XSS ATTACKS
 function escapeHtml(text) {
@@ -93,7 +58,6 @@ function validateAmount(amount) {
 // LOOK IF THERE IS DATA IN LOCAL STORAGE
 ENTRY_LIST = JSON.parse(localStorage.getItem("entry_list")) || [];
 updateUI();
-applyTranslations();
 
 // EVENT LISTENERS
 expenseBtn.addEventListener("click", function () {
@@ -148,14 +112,6 @@ addIncome.addEventListener("click", function () {
 incomeList.addEventListener("click", deleteOrEdit);
 expenseList.addEventListener("click", deleteOrEdit);
 allList.addEventListener("click", deleteOrEdit);
-
-// LANGUAGE SWITCH
-langSelect.addEventListener("change", function() {
-  currentLang = this.value;
-  localStorage.setItem("lang", currentLang);
-  applyTranslations();
-  updateUI();
-});
 
 // KEYBOARD NAVIGATION
 document.addEventListener("keydown", function(e) {
@@ -223,8 +179,8 @@ function updateUI() {
   outcome = calculateTotal("expense", ENTRY_LIST);
   balance = Math.abs(calculateBalance(income, outcome));
 
-  let currency = currentLang === "zh" ? "¥" : "$";
-  let sign = income >= outcome ? currency : "-" + currency;
+  const currency = "$";
+  const sign = income >= outcome ? currency : "-" + currency;
 
   balanceEl.innerHTML = `<small>${sign}</small>${balance}`;
   outcomeTotalEl.innerHTML = `<small>${currency}</small>${outcome}`;
@@ -246,7 +202,7 @@ function updateUI() {
 
 function showEntry(list, type, title, amount, id) {
   const safeTitle = escapeHtml(title);
-  const currency = currentLang === "zh" ? "¥" : "$";
+  const currency = "$";
   const entry = `<li id="${id}" class="${type}" role="listitem" aria-label="${safeTitle} ${currency}${amount}">
                     <div class="entry">${safeTitle} : ${currency}${amount}</div>
                     <button id="edit" class="edit-btn" aria-label="Edit entry" role="button" tabindex="0"></button>
@@ -300,23 +256,6 @@ function inactive(elements) {
   elements.forEach((element) => {
     element.classList.remove("focus");
   });
-}
-
-function applyTranslations() {
-  const t = translations[currentLang];
-  document.querySelector(".balance .title").textContent = t.balance;
-  document.querySelector(".income .title").textContent = t.income;
-  document.querySelector(".outcome .title").textContent = t.outcome;
-  document.querySelector(".dash-title").textContent = t.dashboard;
-  document.querySelector(".first-tab").textContent = t.expenses;
-  document.querySelector(".third-tab").textContent = t.all;
-  document.querySelector("#expense-title-input").placeholder = t.title;
-  document.querySelector("#income-title-input").placeholder = t.title;
-  
-  const cookieMsg = document.querySelector(".cookie-text");
-  if (cookieMsg) cookieMsg.textContent = t.cookieMessage;
-  
-  langSelect.value = currentLang;
 }
 
 // EXPORT FOR TESTING

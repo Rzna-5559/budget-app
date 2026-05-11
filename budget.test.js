@@ -199,59 +199,6 @@ describe('Budget App Calculations', () => {
   });
 });
 
-describe('Budget App Internationalization', () => {
-  
-  test('应该有中英文翻译', () => {
-    const translations = {
-      en: {
-        balance: "Balance",
-        income: "Income",
-        outcome: "Expense"
-      },
-      zh: {
-        balance: "余额",
-        income: "收入",
-        outcome: "支出"
-      }
-    };
-    
-    expect(translations.en.balance).toBe("Balance");
-    expect(translations.zh.balance).toBe("余额");
-    expect(translations.en.income).toBe("Income");
-    expect(translations.zh.income).toBe("收入");
-  });
-  
-  test('翻译对象应该包含所有必需的键', () => {
-    const requiredKeys = ['balance', 'income', 'outcome', 'dashboard', 'expenses', 'all', 'title'];
-    
-    const translations = {
-      en: {
-        balance: "Balance",
-        income: "Income",
-        outcome: "Expense",
-        dashboard: "Dashboard",
-        expenses: "Expenses",
-        all: "All",
-        title: "title"
-      },
-      zh: {
-        balance: "余额",
-        income: "收入",
-        outcome: "支出",
-        dashboard: "仪表盘",
-        expenses: "支出",
-        all: "全部",
-        title: "标题"
-      }
-    };
-    
-    requiredKeys.forEach(key => {
-      expect(translations.en).toHaveProperty(key);
-      expect(translations.zh).toHaveProperty(key);
-    });
-  });
-});
-
 describe('Budget App Data Management', () => {
   
   test('应该正确添加支出', () => {

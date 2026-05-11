@@ -50,9 +50,6 @@ input[type="number"] {
 .budget-container .app-title {
   margin-top: 20px;
   margin-left: 20px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
 }
 
 .budget-container .app-title a {
@@ -60,14 +57,6 @@ input[type="number"] {
 }
 .budget-container .app-title a b {
   font-family: "Gilroy Bold";
-}
-
-.lang-switch select {
-  padding: 5px 10px;
-  border-radius: 5px;
-  border: 1px solid #ccc;
-  background: #fff;
-  cursor: pointer;
 }
 
 .budget-header {
