@@ -57,6 +57,15 @@ function validateAmount(amount) {
 
 // LOOK IF THERE IS DATA IN LOCAL STORAGE
 ENTRY_LIST = JSON.parse(localStorage.getItem("entry_list")) || [];
+
+// VALIDATE LOCALSTORAGE DATA TO PREVENT TAMPERING
+ENTRY_LIST = ENTRY_LIST.filter(item => 
+  item && typeof item === 'object' && 
+  ['income', 'expense'].includes(item.type) &&
+  typeof item.title === 'string' &&
+  typeof item.amount === 'number' && item.amount >= 0
+);
+
 updateUI();
 
 // EVENT LISTENERS

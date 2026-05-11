@@ -2,6 +2,32 @@
 // 使用Jest框架进行单元测试
 
 describe('Budget App Security Tests', () => {
+  describe('LocalStorage Data Validation', () => {
+    test('应该过滤无效数据', () => {
+      const validateData = (entries) => {
+        return entries.filter(item => 
+          item && typeof item === 'object' && 
+          ['income', 'expense'].includes(item.type) &&
+          typeof item.title === 'string' &&
+          typeof item.amount === 'number' && item.amount >= 0
+        );
+      };
+      
+      const invalidData = [
+        { type: 'income', title: 'Salary', amount: 5000 },
+        { type: 'invalid', title: 'Test', amount: 100 },
+        { type: 'expense', title: 'Food', amount: -50 },
+        { type: 'expense', amount: 100 },
+        'invalid string',
+        null,
+        undefined
+      ];
+      
+      const result = validateData(invalidData);
+      expect(result.length).toBe(1);
+      expect(result[0].title).toBe('Salary');
+    });
+  });
   
   describe('escapeHtml', () => {
     test('应该转义HTML特殊字符', () => {
