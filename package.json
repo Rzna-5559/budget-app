@@ -1,0 +1,15 @@
+{
+  "name": "budget-app",
+  "version": "1.0.0",
+  "description": "Budget App - Personal budget management with security, accessibility, and i18n support",
+  "scripts": {
+    "test": "jest --coverage",
+    "test:watch": "jest --watch"
+  },
+  "keywords": ["budget", "finance", "management"],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "jest": "^29.7.0"
+  }
+}

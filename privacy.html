@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Budget App Privacy Policy">
+    <title>隐私政策 | Privacy Policy</title>
+    <link href="./style.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+    <div class="budget-container privacy-page" role="main">
+      <div class="app-title">
+        <a href="./index.html">预算<b>应用</b></a>
+      </div>
+
+      <div class="privacy-content">
+        <div class="lang-switch" role="navigation" aria-label="Language selection">
+          <select id="lang-select" onchange="switchLang(this.value)" aria-label="Select language">
+            <option value="zh" selected>中文</option>
+            <option value="en">English</option>
+          </select>
+        </div>
+
+        <div class="zh-content">
+          <h1>隐私政策</h1>
+          <p class="last-updated">最后更新日期：2024年1月1日</p>
+
+          <h2>信息收集与使用</h2>
+          <p>我们高度重视您的隐私保护。本应用收集的信息仅用于改善用户体验和提供本地数据存储服务。</p>
+
+          <h3>本地存储</h3>
+          <p>我们使用浏览器的LocalStorage来存储您的预算数据。这些数据仅存储在您的本地设备上，我们无法访问或获取这些信息。</p>
+
+          <h3>Cookie使用</h3>
+          <p>我们使用Cookie来记住您的语言偏好设置。您可以在首次访问时选择接受或拒绝Cookie。</p>
+          <ul>
+            <li>cookies_accepted: 用于记住您的Cookie同意状态</li>
+            <li>lang: 用于保存您的语言偏好</li>
+          </ul>
+
+          <h3>数据安全</h3>
+          <p>您的预算数据仅存储在浏览器本地，不会被传输到任何服务器。删除浏览器数据将清除所有存储的信息。</p>
+
+          <h3>第三方服务</h3>
+          <p>本应用不使用任何第三方分析或追踪服务。</p>
+
+          <h3>儿童隐私</h3>
+          <p>本应用不面向13岁以下的儿童，我们不会故意收集儿童的个人信息。</p>
+
+          <h3>隐私政策更新</h3>
+          <p>我们可能会不时更新本隐私政策。所有更改将在本页面发布。建议您定期查看以了解最新信息。</p>
+
+          <h3>联系我们</h3>
+          <p>如果您对本隐私政策有任何疑问，请通过以下方式联系我们。</p>
+        </div>
+
+        <div class="en-content" style="display: none;">
+          <h1>Privacy Policy</h1>
+          <p class="last-updated">Last Updated: January 1, 2024</p>
+
+          <h2>Information Collection and Use</h2>
+          <p>We take your privacy seriously. The information collected by this app is only used to improve user experience and provide local data storage services.</p>
+
+          <h3>Local Storage</h3>
+          <p>We use the browser's LocalStorage to store your budget data. This data is stored only on your local device, and we cannot access or retrieve this information.</p>
+
+          <h3>Cookie Usage</h3>
+          <p>We use cookies to remember your language preference settings. You can choose to accept or reject cookies during your first visit.</p>
+          <ul>
+            <li>cookies_accepted: Used to remember your cookie consent status</li>
+            <li>lang: Used to save your language preference</li>
+          </ul>
+
+          <h3>Data Security</h3>
+          <p>Your budget data is stored only in the browser locally and will not be transmitted to any server. Deleting browser data will clear all stored information.</p>
+
+          <h3>Third-Party Services</h3>
+          <p>This app does not use any third-party analytics or tracking services.</p>
+
+          <h3>Children's Privacy</h3>
+          <p>This app is not intended for children under 13, and we do not knowingly collect personal information from children.</p>
+
+          <h3>Changes to This Privacy Policy</h3>
+          <p>We may update this privacy policy from time to time. Any changes will be posted on this page. We recommend that you check periodically to stay informed about the latest information.</p>
+
+          <h3>Contact Us</h3>
+          <p>If you have any questions about this privacy policy, please contact us through the following methods.</p>
+        </div>
+
+        <a href="./index.html" class="back-link" aria-label="Back to main page">← 返回应用</a>
+      </div>
+    </div>
+
+    <footer role="contentinfo">
+      <a href="./privacy.html" aria-label="Privacy Policy page">隐私政策</a>
+    </footer>
+
+    <script>
+      function switchLang(lang) {
+        const zhContent = document.querySelector('.zh-content');
+        const enContent = document.querySelector('.en-content');
+        if (lang === 'zh') {
+          zhContent.style.display = 'block';
+          enContent.style.display = 'none';
+        } else {
+          zhContent.style.display = 'none';
+          enContent.style.display = 'block';
+        }
+        localStorage.setItem('lang', lang);
+      }
+
+      // Initialize language from localStorage
+      const savedLang = localStorage.getItem('lang') || 'zh';
+      document.getElementById('lang-select').value = savedLang;
+      switchLang(savedLang);
+    </script>
+  </body>
+</html>
