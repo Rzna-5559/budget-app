@@ -17,7 +17,6 @@ budget-app/
 ├── budget.js          # Core business logic
 ├── chart.js           # Chart rendering module
 ├── i18n.js            # Internationalization module
-├── test-badge.js      # Test badge generator
 ├── style.css          # Stylesheet
 ├── package.json       # Project configuration
 └── README.md          # Project documentation
@@ -77,30 +76,4 @@ budget-app/
 - Privacy policy with detailed Cookie usage explanation
 - Cookie consent status persistence
 
-**Related Files**:
-- [index.html](file:///workspace/index.html)
-- [budget.js](file:///workspace/budget.js)
 
-## 📊 Test Coverage
-
-### Test Case Statistics
-
-```
-Tests:       78 passed, 78 total
-Coverage:    85%+
-```
-
-### Test Coverage Modules
-
-- **escapeHtml** - XSS protection function: 100%
-- **sanitizeInput** - Input sanitization function: 100%
-- **validateAmount** - Amount validation function: 100%
-- **validateTitle** - Title validation function: 100%
-- **calculateTotal** - Total calculation function: 100%
-- **calculateBalance** - Balance calculation function: 100%
-- **validateData** - Data validation function: 100%
-- **getCurrency** - Currency getter function: 100%
-
----
-
-**Version**: 1.0.0
