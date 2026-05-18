@@ -39,7 +39,10 @@ const translations = {
     policyChanges: "Changes to This Privacy Policy",
     policyChangesText: "We may update this privacy policy from time to time. Any changes will be posted on this page. We recommend that you check periodically to stay informed about the latest information.",
     contactUs: "Contact Us",
-    contactUsText: "If you have any questions about this privacy policy, please contact us through the following methods."
+    contactUsText: "If you have any questions about this privacy policy, please contact us through the following methods.",
+    switchToEnglish: "EN",
+    switchToChinese: "中文",
+    languageToggle: "Switch Language"
   },
   zh: {
     balance: "余额",
@@ -81,7 +84,10 @@ const translations = {
     policyChanges: "隐私政策更新",
     policyChangesText: "我们可能会不时更新本隐私政策。所有更改将在本页面发布。建议您定期查看以了解最新信息。",
     contactUs: "联系我们",
-    contactUsText: "如果您对本隐私政策有任何疑问，请通过以下方式联系我们。"
+    contactUsText: "如果您对本隐私政策有任何疑问，请通过以下方式联系我们。",
+    switchToEnglish: "EN",
+    switchToChinese: "中文",
+    languageToggle: "切换语言"
   }
 };
 
@@ -171,8 +177,13 @@ function updateLanguageToggleButton() {
 }
 
 function updateLanguageToggleButtonStyle(toggle) {
-  toggle.textContent = currentLanguage === "en" ? "中文" : "EN";
-  toggle.setAttribute("aria-label", currentLanguage === "en" ? "Switch to Chinese" : "切换到英文");
+  if (currentLanguage === "zh") {
+    toggle.textContent = t("switchToEnglish");
+    toggle.setAttribute("aria-label", t("switchToEnglish"));
+  } else {
+    toggle.textContent = t("switchToChinese");
+    toggle.setAttribute("aria-label", t("switchToChinese"));
+  }
 }
 
 function initI18n() {
