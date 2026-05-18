@@ -31,11 +31,11 @@
         </div>
       </div>
       <div class="budget-dashboard" role="region" aria-label="Dashboard">
-        <div class="dash-title" role="heading" aria-level="2">Dashboard</div>
+        <div class="dash-title" role="heading" aria-level="2" data-i18n="dashboard">Dashboard</div>
         <div class="toggle" role="tablist" aria-label="Transaction type filter">
-          <button class="first-tab" role="tab" aria-selected="false" aria-controls="expense" tabindex="0">Expenses</button>
-          <button class="second-tab" role="tab" aria-selected="false" aria-controls="income" tabindex="-1">Income</button>
-          <button class="third-tab focus" role="tab" aria-selected="true" aria-controls="all" tabindex="0">All</button>
+          <button class="first-tab" role="tab" aria-selected="false" aria-controls="expense" tabindex="0" data-i18n="expenses">Expenses</button>
+          <button class="second-tab" role="tab" aria-selected="false" aria-controls="income" tabindex="-1" data-i18n="income">Income</button>
+          <button class="third-tab focus" role="tab" aria-selected="true" aria-controls="all" tabindex="0" data-i18n="all">All</button>
         </div>
         <div class="hide" id="expense" role="tabpanel" aria-labelledby="expense-tab">
           <ul class="list" role="list" aria-label="Expense list"></ul>
@@ -45,6 +45,7 @@
               id="expense-title-input"
               name="title"
               placeholder="title"
+              data-i18n="title"
               aria-label="Expense title"
             />
             <input
@@ -52,6 +53,7 @@
               id="expense-amount-input"
               name="amount"
               placeholder="$0"
+              data-i18n="amount"
               aria-label="Expense amount"
               min="0"
             />
@@ -68,6 +70,7 @@
               id="income-title-input"
               name="title"
               placeholder="title"
+              data-i18n="title"
               aria-label="Income title"
             />
             <input
@@ -75,6 +78,7 @@
               id="income-amount-input"
               name="amount"
               placeholder="$0"
+              data-i18n="amount"
               aria-label="Income amount"
               min="0"
             />
