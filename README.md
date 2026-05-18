@@ -17,7 +17,6 @@ budget-app/
 ├── budget.js          # 核心业务逻辑
 ├── chart.js           # 图表渲染模块
 ├── i18n.js            # 国际化模块
-├── test-badge.js      # 测试标识生成器
 ├── style.css          # 样式表
 ├── package.json       # 项目配置
 └── README.md          # 项目文档
@@ -101,21 +100,4 @@ npm test
 npm test -- --coverage
 ```
 
-### 本地预览
 
-```bash
-python -m http.server 8000
-```
-
-访问 `http://localhost:8000`
-
-## 👥 贡献者
-
-- **JingyueWang112** - 输入验证功能
-- **jiao306** - 国际化基础实现
-- **Despairrrrrr** - 国际化完善和隐私政策
-- **Rzna-5559** - 测试系统和文档
-
----
-
-**版本**: 1.0.0
