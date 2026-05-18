@@ -51,21 +51,21 @@ function validateTitle(title) {
     if (!trimmed) {
         return {
             valid: false,
-            message: "Title cannot be empty."
+            message: t("titleEmpty")
         };
     }
 
     if (trimmed.length > 50) {
         return {
             valid: false,
-            message: "Title cannot exceed 50 characters."
+            message: t("titleTooLong")
         };
     }
 
     if (/[<>]/.test(trimmed)) {
         return {
             valid: false,
-            message: "Title cannot contain unsafe characters."
+            message: t("titleUnsafe")
         };
     }
 
@@ -81,28 +81,28 @@ function validateAmount(amount) {
     if (amount === "") {
         return {
             valid: false,
-            message: "Amount cannot be empty."
+            message: t("amountEmpty")
         };
     }
 
     if (Number.isNaN(numberValue)) {
         return {
             valid: false,
-            message: "Amount must be a number."
+            message: t("amountInvalid")
         };
     }
 
     if (numberValue <= 0) {
         return {
             valid: false,
-            message: "Amount must be greater than 0."
+            message: t("amountZero")
         };
     }
 
     if (numberValue > 1000000) {
         return {
             valid: false,
-            message: "Amount is too large."
+            message: t("amountTooLarge")
         };
     }
 
