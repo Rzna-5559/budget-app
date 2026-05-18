@@ -30,6 +30,74 @@ let balance = 0,
   outcome = 0;
 const DELETE = "delete",
   EDIT = "edit";
+// INPUT VALIDATION
+
+function validateTitle(title) {
+    const trimmed = title.trim();
+
+    if (!trimmed) {
+        return {
+            valid: false,
+            message: "Title cannot be empty."
+        };
+    }
+
+    if (trimmed.length > 50) {
+        return {
+            valid: false,
+            message: "Title cannot exceed 50 characters."
+        };
+    }
+
+    if (/[<>]/.test(trimmed)) {
+        return {
+            valid: false,
+            message: "Title cannot contain unsafe characters."
+        };
+    }
+
+    return {
+        valid: true,
+        value: trimmed
+    };
+}
+
+function validateAmount(amount) {
+    const numberValue = Number(amount);
+
+    if (amount === "") {
+        return {
+            valid: false,
+            message: "Amount cannot be empty."
+        };
+    }
+
+    if (Number.isNaN(numberValue)) {
+        return {
+            valid: false,
+            message: "Amount must be a number."
+        };
+    }
+
+    if (numberValue <= 0) {
+        return {
+            valid: false,
+            message: "Amount must be greater than 0."
+        };
+    }
+
+    if (numberValue > 1000000) {
+        return {
+            valid: false,
+            message: "Amount is too large."
+        };
+    }
+
+    return {
+        valid: true,
+        value: numberValue
+    };
+}
 
 // ESCAPE HTML TO PREVENT XSS ATTACKS
 function escapeHtml(text) {
@@ -91,13 +159,24 @@ allBtn.addEventListener("click", function () {
 });
 
 addExpense.addEventListener("click", function () {
-  if (!expenseTitle.value || !expenseAmount.value) return;
+  const titleValidation = validateTitle(expenseTitle.value);
+const amountValidation = validateAmount(expenseAmount.value);
 
-  let expense = {
+if (!titleValidation.valid) {
+    alert(titleValidation.message);
+    return;
+}
+
+if (!amountValidation.valid) {
+    alert(amountValidation.message);
+    return;
+}
+
+let expense = {
     type: "expense",
-    title: sanitizeInput(expenseTitle.value),
-    amount: validateAmount(expenseAmount.value),
-  };
+    title: titleValidation.value,
+    amount: amountValidation.value,
+};
   ENTRY_LIST.push(expense);
 
   updateUI();
@@ -105,13 +184,24 @@ addExpense.addEventListener("click", function () {
 });
 
 addIncome.addEventListener("click", function () {
-  if (!incomeTitle.value || !incomeAmount.value) return;
+  const titleValidation = validateTitle(incomeTitle.value);
+const amountValidation = validateAmount(incomeAmount.value);
 
-  let incomeObj = {
+if (!titleValidation.valid) {
+    alert(titleValidation.message);
+    return;
+}
+
+if (!amountValidation.valid) {
+    alert(amountValidation.message);
+    return;
+}
+
+let incomeObj = {
     type: "income",
-    title: sanitizeInput(incomeTitle.value),
-    amount: validateAmount(incomeAmount.value),
-  };
+    title: titleValidation.value,
+    amount: amountValidation.value,
+};
   ENTRY_LIST.push(incomeObj);
 
   updateUI();
