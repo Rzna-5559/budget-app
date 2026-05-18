@@ -30,6 +30,19 @@ let balance = 0,
   outcome = 0;
 const DELETE = "delete",
   EDIT = "edit";
+
+function getCurrency() {
+  const lang = localStorage.getItem("language") || "en";
+  return lang === "zh" ? "¥" : "$";
+}
+
+function getBalanceLabel() {
+  const lang = localStorage.getItem("language") || "en";
+  if (lang === "zh") {
+    return income >= outcome ? "" : "-";
+  }
+  return income >= outcome ? "" : "-";
+}
 // INPUT VALIDATION
 
 function validateTitle(title) {
@@ -278,10 +291,10 @@ function updateUI() {
   outcome = calculateTotal("expense", ENTRY_LIST);
   balance = Math.abs(calculateBalance(income, outcome));
 
-  const currency = "$";
-  const sign = income >= outcome ? currency : "-" + currency;
+  const currency = getCurrency();
+  const sign = getBalanceLabel();
 
-  balanceEl.innerHTML = `<small>${sign}</small>${balance}`;
+  balanceEl.innerHTML = `<small>${sign}${currency}</small>${balance}`;
   outcomeTotalEl.innerHTML = `<small>${currency}</small>${outcome}`;
   incomeTotalEl.innerHTML = `<small>${currency}</small>${income}`;
 
@@ -301,7 +314,7 @@ function updateUI() {
 
 function showEntry(list, type, title, amount, id) {
   const safeTitle = escapeHtml(title);
-  const currency = "$";
+  const currency = getCurrency();
   const entry = `<li id="${id}" class="${type}" role="listitem" aria-label="${safeTitle} ${currency}${amount}">
                     <div class="entry">${safeTitle} : ${currency}${amount}</div>
                     <button id="edit" class="edit-btn" aria-label="Edit entry" role="button" tabindex="0"></button>

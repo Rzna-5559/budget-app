@@ -586,6 +586,40 @@ input:focus {
   outline-offset: 2px;
 }
 
+/* LANGUAGE TOGGLE */
+.language-toggle {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  padding: 8px 15px;
+  background-color: #fff;
+  color: #2a0355;
+  border: none;
+  border-radius: 20px;
+  font-size: 0.9em;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: "Gilroy", Arial, sans-serif;
+}
+
+.language-toggle:hover {
+  background-color: #4CAF50;
+  color: #fff;
+  transform: scale(1.05);
+}
+
+.language-toggle:focus {
+  outline: 2px solid #4CAF50;
+  outline-offset: 2px;
+}
+
+.budget-container .app-title {
+  margin-top: 20px;
+  margin-left: 20px;
+  position: relative;
+}
+
 /* HIGH CONTRAST MODE */
 @media (prefers-contrast: high) {
   .budget-container {
