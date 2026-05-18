@@ -15,27 +15,43 @@ function sanitizeInput(input) {
   return escapeHtml(input.trim());
 }
 
+function getValidationMessage(key) {
+  if (typeof t === "function") {
+    return t(key);
+  }
+  const fallback = {
+    titleEmpty: "Title cannot be empty.",
+    titleTooLong: "Title cannot exceed 50 characters.",
+    titleUnsafe: "Title cannot contain unsafe characters.",
+    amountEmpty: "Amount cannot be empty.",
+    amountInvalid: "Amount must be a number.",
+    amountZero: "Amount must be greater than 0.",
+    amountTooLarge: "Amount is too large."
+  };
+  return fallback[key] || key;
+}
+
 function validateTitle(title) {
   const trimmed = title.trim();
 
   if (!trimmed) {
     return {
       valid: false,
-      message: "Title cannot be empty."
+      message: getValidationMessage("titleEmpty")
     };
   }
 
   if (trimmed.length > 50) {
     return {
       valid: false,
-      message: "Title cannot exceed 50 characters."
+      message: getValidationMessage("titleTooLong")
     };
   }
 
   if (/[<>]/.test(trimmed)) {
     return {
       valid: false,
-      message: "Title cannot contain unsafe characters."
+      message: getValidationMessage("titleUnsafe")
     };
   }
 
@@ -51,28 +67,28 @@ function validateAmount(amount) {
   if (amount === "") {
     return {
       valid: false,
-      message: "Amount cannot be empty."
+      message: getValidationMessage("amountEmpty")
     };
   }
 
   if (Number.isNaN(numberValue)) {
     return {
       valid: false,
-      message: "Amount must be a number."
+      message: getValidationMessage("amountInvalid")
     };
   }
 
   if (numberValue <= 0) {
     return {
       valid: false,
-      message: "Amount must be greater than 0."
+      message: getValidationMessage("amountZero")
     };
   }
 
   if (numberValue > 1000000) {
     return {
       valid: false,
-      message: "Amount is too large."
+      message: getValidationMessage("amountTooLarge")
     };
   }
 
@@ -159,31 +175,6 @@ if (typeof window !== "undefined") {
       return income >= outcome ? "" : "-";
     }
     return income >= outcome ? "" : "-";
-  }
-
-  function t(key) {
-    const translations = {
-      en: {
-        titleEmpty: "Title cannot be empty.",
-        titleTooLong: "Title cannot exceed 50 characters.",
-        titleUnsafe: "Title cannot contain unsafe characters.",
-        amountEmpty: "Amount cannot be empty.",
-        amountInvalid: "Amount must be a number.",
-        amountZero: "Amount must be greater than 0.",
-        amountTooLarge: "Amount is too large."
-      },
-      zh: {
-        titleEmpty: "标题不能为空。",
-        titleTooLong: "标题不能超过50个字符。",
-        titleUnsafe: "标题不能包含危险字符。",
-        amountEmpty: "金额不能为空。",
-        amountInvalid: "金额必须是数字。",
-        amountZero: "金额必须大于0。",
-        amountTooLarge: "金额过大。"
-      }
-    };
-    const lang = localStorage.getItem("language") || "en";
-    return translations[lang][key] || translations.en[key] || key;
   }
 
   // LOOK IF THERE IS DATA IN LOCAL STORAGE
